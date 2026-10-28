@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="logo">Coffee Shop</div>
-    <ul class="nav-links">
+  <nav class="navbar" id="navbar">
+    <div class="logo"><i class='bx bxs-coffee-alt'></i> Coffee Shop</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class='bx bx-menu'></i></button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="Product.html">Products</a></li>
       <li><a href="login.html">Login</a></li>
-      <li><a href="about.html">About Us</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
     </ul>
   </nav>
 
@@ -23,6 +25,8 @@
     <p>Honeycomb & Heart</p>
     <p>Bernardino, Ghil Jay V.</p>
   </main>
+
+  <script src="main.js"></script>
 
 </body>
 </html>

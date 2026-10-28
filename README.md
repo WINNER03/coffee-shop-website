@@ -11,4 +11,5 @@ By **Bernardino, Ghil Jay V.**
 - `about.html` – About the project
 
 ## Other files
+- `style.css`, `main.js` – Shared styles and animations (scroll reveal, rotating words, mobile menu)
 - `text.py` – Jeepney passenger simulation (Python)

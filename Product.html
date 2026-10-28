@@ -115,6 +115,38 @@
             padding: 15px;
             margin-top: 30px;
         }
+        /* ===== Animations ===== */
+        header h1 { animation: slideUp 0.8s ease-out both; }
+        header p  { animation: slideUp 0.8s ease-out 0.2s both; }
+
+        .item {
+            animation: slideUp 0.6s ease-out both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        button { transition: background-color 0.2s, transform 0.2s; }
+        button:hover { transform: scale(1.05); }
+
+        .order-item { animation: slideInLeft 0.4s ease-out both; }
+
+        #total { transition: color 0.3s; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
     </style>
 </head>
 
@@ -202,7 +234,7 @@
 
             for (var i = 0; i < coffees.length; i++) {
                 menu.innerHTML += `
-                    <div class="item">
+                    <div class="item" style="animation-delay: ${i * 0.07}s">
                         <h3>${coffees[i].name}</h3>
                         <p>${coffees[i].description}</p>
                         <p class="price">₱${coffees[i].price.toFixed(2)}</p>

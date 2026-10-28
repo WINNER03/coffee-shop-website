@@ -5,32 +5,140 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Honeycomb & Heart</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
 
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- Top Navbar -->
-  <nav class="navbar">
-    <div class="logo">Coffee Shop</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
+  <nav class="navbar" id="navbar">
+    <div class="logo"><i class='bx bxs-coffee-alt'></i> Coffee Shop</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class='bx bx-menu'></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="Product.html">Products</a></li>
       <li><a href="login.html">Login</a></li>
       <li><a href="about.html">About Us</a></li>
     </ul>
   </nav>
 
-  <!-- Hero Banner Section -->
+  <!-- Hero Section -->
   <header class="hero-section">
+    <!-- Floating background bubbles -->
+    <div class="bubbles">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+
     <div class="hero-container">
-      <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-tag">Honeycomb &amp; Heart</p>
         <h1>Welcome to <span>Coffee Shop</span></h1>
-        <div class="coffee-shop-grid">
-          <img src="images/cappuccino.jpg" alt="Cappuccino with cinnamon" class="products-img">
+        <h2 class="rotating">
+          Every cup is
+          <span class="word-wrap"><span class="word" id="rotatingWord">fresh</span></span>
+        </h2>
+        <p class="hero-desc">
+          Handcrafted espresso, creamy lattes and cold brews made just the way you like them.
+          Sit back, sip slow, and enjoy your daily dose of happiness.
+        </p>
+        <div class="hero-buttons">
+          <a href="Product.html" class="hero-btn">View Our Menu</a>
+          <a href="#favorites" class="hero-btn ghost">Our Favorites</a>
         </div>
-        <a href="Product.html" class="hero-btn">View Our Menu</a>
+      </div>
+
+      <div class="hero-visual">
+        <div class="steam">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="img-glow"></div>
+        <img src="images/cappuccino.jpg" alt="Cappuccino with cinnamon" class="products-img">
+        <div class="price-badge">
+          <small>Cappuccino</small>
+          <strong>₱110</strong>
+        </div>
       </div>
     </div>
+
+    <a href="#favorites" class="scroll-down" aria-label="Scroll down"><i class='bx bx-chevron-down'></i></a>
+
+    <!-- Wave divider -->
+    <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,64 C240,120 480,0 720,48 C960,96 1200,16 1440,64 L1440,120 L0,120 Z" fill="#fffaf5"></path>
+    </svg>
   </header>
 
+  <!-- Favorites -->
+  <section class="section favorites" id="favorites">
+    <p class="section-tag reveal">Our Menu</p>
+    <h2 class="section-title reveal">Customer Favorites</h2>
+
+    <div class="card-grid">
+      <div class="drink-card reveal">
+        <div class="drink-icon"><i class='bx bxs-coffee'></i></div>
+        <h3>Cappuccino</h3>
+        <p>Coffee topped with silky milk foam and a dash of cinnamon.</p>
+        <span class="drink-price">₱110</span>
+      </div>
+      <div class="drink-card reveal">
+        <div class="drink-icon"><i class='bx bxs-coffee-alt'></i></div>
+        <h3>Caramel Macchiato</h3>
+        <p>Sweet caramel layered over espresso and steamed milk.</p>
+        <span class="drink-price">₱140</span>
+      </div>
+      <div class="drink-card reveal">
+        <div class="drink-icon"><i class='bx bxs-coffee-togo'></i></div>
+        <h3>Iced Coffee</h3>
+        <p>Cold, refreshing and perfect for a hot afternoon.</p>
+        <span class="drink-price">₱100</span>
+      </div>
+    </div>
+
+    <a href="Product.html" class="hero-btn reveal">See Full Menu</a>
+  </section>
+
+  <!-- Why us -->
+  <section class="section why">
+    <p class="section-tag reveal">Why Choose Us</p>
+    <h2 class="section-title reveal">Why You'll Love Us</h2>
+
+    <div class="feature-grid">
+      <div class="feature reveal from-left">
+        <i class='bx bxs-leaf'></i>
+        <h3>Fresh Beans</h3>
+        <p>We brew every cup from freshly ground coffee beans.</p>
+      </div>
+      <div class="feature reveal">
+        <i class='bx bxs-heart'></i>
+        <h3>Made with Heart</h3>
+        <p>Each drink is handcrafted by our friendly baristas.</p>
+      </div>
+      <div class="feature reveal from-right">
+        <i class='bx bxs-wallet'></i>
+        <h3>Student Friendly</h3>
+        <p>Great coffee at an affordable price, starting at ₱80.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to action -->
+  <section class="cta reveal">
+    <h2>Ready for your next cup?</h2>
+    <p>Browse the menu and build your order in seconds.</p>
+    <a href="Product.html" class="hero-btn light">Order Now</a>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo"><i class='bx bxs-coffee-alt'></i> Coffee Shop</div>
+    <p>© 2026 Honeycomb &amp; Heart · Made by Bernardino, Ghil Jay V.</p>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
+
+  <script src="main.js"></script>
 </body>
 </html>
