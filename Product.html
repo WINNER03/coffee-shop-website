@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5eee6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4b2e2b;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background-color: #6f4e37;
+            text-align: center;
+            padding: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4b2e2b;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .item {
+            background-color: white;
+            width: 220px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px gray;
+        }
+
+        .item h3 {
+            color: #6f4e37;
+        }
+
+        .price {
+            color: #4b2e2b;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 55px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: #6f4e37;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4b2e2b;
+        }
+
+        .orders {
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .order-item {
+            border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+        }
+
+        .order-item input {
+            margin: 5px;
+        }
+
+        .remove {
+            background-color: #a83232;
+        }
+
+        #total {
+            color: #4b2e2b;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #4b2e2b;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Brew Corner</h1>
+        <p>Your daily dose of coffee!</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#menu">Our Menu</a>
+        <a href="#orders">Your Order</a>
+        <a href="login.html">Login</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to Brew Corner</h2>
+        <p style="text-align: center;">
+            Enjoy your favorite coffee at an affordable price.
+        </p>
+    </section>
+
+    <section id="menu">
+        <h2>Our Coffee Menu</h2>
+
+        <div class="menu" id="coffeeMenu"></div>
+    </section>
+
+    <section id="orders">
+        <h2>Your Order</h2>
+
+        <div class="orders">
+            <div id="orderList">
+                <p>No orders yet.</p>
+            </div>
+
+            <p id="total">Total: ₱0.00</p>
+
+            <button onclick="placeOrder()">Place Order</button>
+            <button onclick="clearOrder()">Clear Order</button>
+
+            <p id="message"></p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p style="text-align: center;">
+            Brew Corner serves delicious coffee for students
+            and coffee lovers.
+        </p>
+    </section>
+
+    <footer>
+        <p>© 2026 Brew Corner Coffee Shop</p>
+        <p>Thank you for visiting!</p>
+    </footer>
+
+    <script>
+        var coffees = [
+            { name: "Espresso", price: 80, description: "Strong and rich coffee." },
+            { name: "Americano", price: 90, description: "Espresso with hot water." },
+            { name: "Cappuccino", price: 110, description: "Coffee with milk and foam." },
+            { name: "Cafe Latte", price: 120, description: "Coffee with steamed milk." },
+            { name: "Mocha", price: 130, description: "Coffee mixed with chocolate." },
+            { name: "Iced Coffee", price: 100, description: "Cold and refreshing coffee." },
+            { name: "Caramel Macchiato", price: 140, description: "Coffee with caramel flavor." },
+            { name: "Vanilla Latte", price: 130, description: "Latte with vanilla flavor." },
+            { name: "Spanish Latte", price: 125, description: "Sweet and creamy coffee." },
+            { name: "White Chocolate Mocha", price: 145, description: "Coffee with white chocolate." },
+            { name: "Cold Brew", price: 110, description: "Slow-brewed cold coffee." },
+            { name: "Hazelnut Latte", price: 135, description: "Coffee with hazelnut flavor." },
+            { name: "Flat White", price: 115, description: "Coffee with smooth milk." },
+            { name: "Cafe au Lait", price: 100, description: "Coffee mixed with warm milk." },
+            { name: "Affogato", price: 150, description: "Coffee served with ice cream." }
+        ];
+
+        var order = [];
+
+        function showMenu() {
+            var menu = document.getElementById("coffeeMenu");
+
+            for (var i = 0; i < coffees.length; i++) {
+                menu.innerHTML += `
+                    <div class="item">
+                        <h3>${coffees[i].name}</h3>
+                        <p>${coffees[i].description}</p>
+                        <p class="price">₱${coffees[i].price.toFixed(2)}</p>
+
+                        <label>Quantity:</label>
+                        <input type="number" id="qty${i}" value="1" min="1">
+
+                        <br><br>
+
+                        <button onclick="addOrder(${i})">
+                            Add to Order
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function addOrder(index) {
+            var quantity = parseInt(
+                document.getElementById("qty" + index).value
+            );
+
+            if (isNaN(quantity) || quantity < 1) {
+                alert("Please enter a valid quantity.");
+                return;
+            }
+
+            var found = false;
+
+            for (var i = 0; i < order.length; i++) {
+                if (order[i].name === coffees[index].name) {
+                    order[i].quantity += quantity;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found === false) {
+                order.push({
+                    name: coffees[index].name,
+                    price: coffees[index].price,
+                    quantity: quantity
+                });
+            }
+
+            showOrder();
+            document.getElementById("message").innerHTML = "";
+        }
+
+        function showOrder() {
+            var list = document.getElementById("orderList");
+            var total = 0;
+
+            list.innerHTML = "";
+
+            if (order.length === 0) {
+                list.innerHTML = "<p>No orders yet.</p>";
+            }
+
+            for (var i = 0; i < order.length; i++) {
+                var subtotal = order[i].price * order[i].quantity;
+                total += subtotal;
+
+                list.innerHTML += `
+                    <div class="order-item">
+                        <strong>${order[i].name}</strong>
+                        <p>Price: ₱${order[i].price.toFixed(2)}</p>
+
+                        <label>Quantity:</label>
+                        <input type="number" min="1"
+                            value="${order[i].quantity}"
+                            onchange="changeQuantity(${i}, this.value)">
+
+                        <p>Subtotal: ₱${subtotal.toFixed(2)}</p>
+
+                        <button class="remove"
+                            onclick="removeOrder(${i})">
+                            Remove
+                        </button>
+                    </div>
+                `;
+            }
+
+            document.getElementById("total").innerHTML =
+                "Total: ₱" + total.toFixed(2);
+        }
+
+        function changeQuantity(index, value) {
+            var quantity = parseInt(value);
+
+            if (isNaN(quantity) || quantity < 1) {
+                alert("Quantity must be at least 1.");
+                showOrder();
+                return;
+            }
+
+            order[index].quantity = quantity;
+            showOrder();
+        }
+
+        function removeOrder(index) {
+            order.splice(index, 1);
+            showOrder();
+            document.getElementById("message").innerHTML = "";
+        }
+
+        function clearOrder() {
+            order = [];
+            showOrder();
+            document.getElementById("message").innerHTML = "";
+        }
+
+        function placeOrder() {
+            if (order.length === 0) {
+                alert("Please add an item to your order first.");
+                return;
+            }
+
+            var total = 0;
+
+            for (var i = 0; i < order.length; i++) {
+                total += order[i].price * order[i].quantity;
+            }
+
+            alert(
+                "Thank you for ordering at Brew Corner!\n" +
+                "Total Amount: ₱" + total.toFixed(2)
+            );
+
+            order = [];
+            showOrder();
+
+            document.getElementById("message").innerHTML =
+                "Order completed! Thank you for choosing Brew Corner.";
+        }
+
+        showMenu();
+    </script>
+
+</body>
+</html>

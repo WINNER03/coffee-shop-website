@@ -1,0 +1,116 @@
+/* Reset basic spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Navbar container Layout */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e8b189;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Brand/Logo styling */
+.logo {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.nav-links a:hover {
+    color:aqua;
+}
+
+/* Hero Section Background */
+.hero-section {
+  background: linear-gradient(135deg, #c2fcd4, #07d0a4);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-container {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.hero-content {
+  text-align: center;
+  color: #e8b189;
+  flex: 1;
+  padding-bottom: 40px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.hero-content h1 span {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.model-img {
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.products-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hero text: readable on the green background */
+.hero-content {
+  color: #ffffff;
+}
+
+.products-img {
+  max-height: 50vh;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* About page */
+.about-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.about-section h2 {
+  margin-bottom: 1rem;
+}
