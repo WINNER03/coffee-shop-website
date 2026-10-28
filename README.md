@@ -12,6 +12,3 @@ By **Bernardino, Ghil Jay V.**
 
 ## Other files
 - `text.py` – Jeepney passenger simulation (Python)
-
-## To do
-- Add `images/model-left.png` and `images/model-right.png` for the home page.
